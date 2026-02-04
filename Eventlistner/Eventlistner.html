@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,4 +23,131 @@
     </div>
       <script src="./script.js"></script>
     </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Flow Playground</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 40px;
+        background-color: #f5f5f5;
+    }
+
+    h1 {
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        color: gray;
+        margin-bottom: 30px;
+    }
+
+    .container {
+        display: flex;
+        gap: 30px;
+    }
+
+    /* Left Side */
+    .playground {
+        flex: 2;
+    }
+
+    .grandparent {
+        background-color: #f4b7b2;
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    .grandparent-label {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .parent {
+        background-color: #a9c9e8;
+        padding: 40px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .parent-label {
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    button {
+        background-color: #2ecc71;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #27ae60;
+    }
+
+    /* Right Side */
+    .event-log {
+        flex: 1;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .event-log h3 {
+        margin-top: 0;
+    }
+
+    .event-log p {
+        font-size: 14px;
+        color: gray;
+        line-height: 1.6;
+    }
+
+</style>
+</head>
+<body>
+
+<h1>Event Flow Playground</h1>
+<p class="subtitle">Demonstrating Capturing, Bubbling & Propagation Control</p>
+
+<div class="container">
+
+    <!-- LEFT -->
+    <div class="playground">
+        <div class="grandparent">
+            <div class="grandparent-label">Grandparent</div>
+            <div class="parent">
+                <div class="parent-label">Parent</div>
+                <button>Click Me</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="event-log">
+        <h3>Event Log</h3>
+        <p>
+            Capturing → Target → Bubbling<br>
+            stopPropagation blocks parents<br>
+            stopImmediatePropagation blocks sibling handlers
+        </p>
+    </div>
+
+</div>
+
+</body>
 </html>

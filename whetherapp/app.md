@@ -82,8 +82,8 @@
 
 ## Requirements -
 
-# API (Data source) -> 
-https://api.weatherapi.com/v1/current.json?key=c7236d36debb4636a18170654262201&q=pune&aqi=no
+https://api.weatherapi.com/v1/current.json?key=672cd332d8704719b4b65106262301&q=pune&aqi=no
+
 
 # Flow ->
 
