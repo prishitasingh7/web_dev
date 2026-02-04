@@ -25,7 +25,6 @@
     </body>
 </html> -->
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +54,6 @@
         gap: 30px;
     }
 
-    /* Left Side */
     .playground {
         flex: 2;
     }
@@ -98,25 +96,25 @@
         background-color: #27ae60;
     }
 
-    /* Right Side */
     .event-log {
         flex: 1;
         background: white;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        max-height: 400px;
+        overflow-y: auto;
     }
 
     .event-log h3 {
         margin-top: 0;
     }
 
-    .event-log p {
+    .log-entry {
         font-size: 14px;
-        color: gray;
-        line-height: 1.6;
+        margin: 5px 0;
+        color: black;
     }
-
 </style>
 </head>
 <body>
@@ -126,7 +124,6 @@
 
 <div class="container">
 
-    <!-- LEFT -->
     <div class="playground">
         <div class="grandparent">
             <div class="grandparent-label">Grandparent</div>
@@ -137,17 +134,54 @@
         </div>
     </div>
 
-    <!-- RIGHT -->
     <div class="event-log">
         <h3>Event Log</h3>
-        <p>
-            Capturing → Target → Bubbling<br>
-            stopPropagation blocks parents<br>
-            stopImmediatePropagation blocks sibling handlers
-        </p>
     </div>
 
 </div>
+
+<script>
+    const grandparent = document.querySelector(".grandparent");
+    const parent = document.querySelector(".parent");
+    const button = document.querySelector("button");
+    const eventLog = document.querySelector(".event-log");
+
+    function log(message) {
+        const p = document.createElement("div");
+        p.textContent = message;
+        p.classList.add("log-entry");
+        eventLog.appendChild(p);
+    }
+
+    function clearLog() {
+        const logs = document.querySelectorAll(".log-entry");
+        logs.forEach(log => log.remove());
+    }
+
+    // Grandparent
+    grandparent.addEventListener("click", function () {
+        log("Grandparent - Bubbling");
+    });
+
+    grandparent.addEventListener("click", function () {
+        log("Grandparent - Capturing");
+    }, true);
+
+    // Parent
+    parent.addEventListener("click", function () {
+        log("Parent - Bubbling");
+    });
+
+    parent.addEventListener("click", function () {
+        log("Parent - Capturing");
+    }, true);
+
+    // Button
+    button.addEventListener("click", function () {
+        clearLog();
+        log("Button - Target");
+    });
+</script>
 
 </body>
 </html>
